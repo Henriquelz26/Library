@@ -1,0 +1,17 @@
+import { Book } from "../classes/Book";
+import { User } from "../classes/User";
+
+export interface LibraryI {
+  bookList: Book[];
+  userList: User[];
+  bookConsultation(bookName: string): string;
+  Listavailable(list:Book[]);
+  Listborrowed(list:Book[]);
+  Listlate(list:Book[]);
+  bookGenderList(gender: string, list: Book[]): string;
+  userLogin(user: User): string;
+  historicUser(user: User): string;
+  loan(user: User, book: Book): string;
+  reserved(user: User, book: Book): string;
+  verifyPenalty(user: User): string;
+}
