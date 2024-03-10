@@ -1,0 +1,33 @@
+import { GenderBook } from "../enums/GenderBook";
+import { StatsBook } from "../enums/StatsBook";
+import { User } from "./User";
+
+export class Book{
+    title :string
+    author : string
+    gender : GenderBook[]
+    stats : StatsBook
+
+    constructor(title:string,author:string,gender:GenderBook[],stats:StatsBook){
+        this.title = title
+        this.author = author
+        this.gender = gender
+        this.stats = stats
+    }
+
+    getTittle(): string {
+        return this.title
+    }
+    getAuthor(): string {
+        return this.author
+    }
+    getGender(): GenderBook[] {
+        return this.gender
+    }
+    getStats(): StatsBook {
+        return this.stats
+    }
+    setStats(value: StatsBook) {
+        this.stats = value
+    }
+}
