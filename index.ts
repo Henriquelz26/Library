@@ -16,7 +16,15 @@ const User3 = new User('Joana', 125,87654321,0, [], [], [] )
 const User4 = new User('Anderson', 126,34567891,0, [], [], [] )
 
 
+//Registrar usuários
+console.log(library.userLogin(User1));
+console.log(library.userLogin(User2));
+console.log(library.userLogin(User3));
+console.log(library.userLogin(User4));
 
+
+// Consultar Livros
+console.log(library.bookConsultation(bookName));
 
 
 
