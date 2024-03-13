@@ -8,11 +8,14 @@ export class Library implements LibraryI{
     bookList: Book[];
     userList: User[];
 
-    constructor(  bookList: Book[],userList: User[]){
-        this.bookList = bookList
-        this.userList = userList
+    constructor( ){
+        this.bookList = []
+        this.userList = []
     }
-
+    BookAdd(bookName: Book): string {
+      this.bookList.push(bookName);
+      return "Book added to the Library.";
+    }
     bookConsultation(bookName: string): string{
         let BookFound: string = "Livro não encontrado.";
         for (let book of this.bookList) {
@@ -31,6 +34,7 @@ export class Library implements LibraryI{
                 books+=Book.title
             }          
         }
+        return books;
     }
     Listborrowed(list:Book[]){
         let books = ''
@@ -39,6 +43,7 @@ export class Library implements LibraryI{
                 books+=Book.title
             }
         }
+        return books;
     }
     Listlate(list:Book[]){
         let books = ''
@@ -47,6 +52,7 @@ export class Library implements LibraryI{
                 books+=Book.title
             }          
         }
+        return books;
     }
 
 
@@ -85,33 +91,33 @@ export class Library implements LibraryI{
 
         loan(user: User, book: Book): string {
             for (let RegisteredUser of this.userList) {
-              if (RegisteredUser.getName() === user.getName()) {
-                for (let RegisteredBook of this.bookList) {
-                  if (RegisteredBook.getTittle() === book.getTittle()) {
-                    if (RegisteredBook.getStats() === StatsBook.Available) {
-                      user.setBorrowedBooks([...user.getBorrowedBooks(), book]);
-                      user.setBorrowingHistoric([...user.getBorrowingHistoric(), book]);
-                      book.setStats(StatsBook.Borrowed);
+            if (RegisteredUser.getName() === user.getName()) {
+            for (let RegisteredBook of this.bookList) {
+              if (RegisteredBook.getTittle() === book.getTittle()) {
+              if (RegisteredBook.getStats() === StatsBook.Available) {
+                  user.setBorrowedBooks([...user.getBorrowedBooks(), book]);
+                  user.setBorrowingHistoric([...user.getBorrowingHistoric(), book]);
+                  book.setStats(StatsBook.Borrowed);
                     } else return "Unavailable book.";
                   } else return "Book not found.";
-                }
-              } else return "User not found.";
             }
+           } else return "User not found.";
+      }
             return "Book withdrawn.";
-          }
+  }
 
           reserved(user: User, book: Book): string {
             for (let RegisteredUser of this.userList) {
-              if (RegisteredUser.getName() === user.getName()) {
-                for (let RegisteredBook of this.bookList) {
-                  if (RegisteredBook.getTittle() === book.getTittle()) {
-                    if (RegisteredBook.getStats() === StatsBook.Available) {
-                      user.setreservedBooks([...user.geteresrvedBooks(), book])
-                      book.setStats(StatsBook.Borrowed);
+            if (RegisteredUser.getName() === user.getName()) {
+            for (let RegisteredBook of this.bookList) {
+              if (RegisteredBook.getTittle() === book.getTittle()) {
+              if (RegisteredBook.getStats() === StatsBook.Available) {
+                  user.setreservedBooks([...user.geteresrvedBooks(), book])
+                  book.setStats(StatsBook.reserved);
                     }
-                  } else return "Book not found.";
+                } else return "Book not found.";
                 }
-              } else return "User not found.";
+            } else return "User not found.";
             }
             return "Book withdrawn.";
           }
